@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'rental_add_update.dart';
-import 'rental_route.dart';
+import '../../routes.dart';
 import 'rental_list.dart';
 
 class RentalDetailNoEdit extends StatelessWidget {

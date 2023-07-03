@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'rental_add_update.dart';
 import 'rental_detail.dart';
-import 'rental_route.dart';
+import '../../routes.dart';
 
 class RentalList extends StatefulWidget {
   static const routeName = '/';

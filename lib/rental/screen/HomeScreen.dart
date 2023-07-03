@@ -4,7 +4,9 @@ import 'package:homerent/rental/screen/rental_list.dart';
 import 'package:homerent/rental/screen/rental_listall.dart';
 
 class HomeScreen extends StatefulWidget {
+  static const routeName = "homescreen";
   HomeScreen({Key? key}) : super(key: key);
+  
 
   @override
   _HomeScreenState createState() => _HomeScreenState();

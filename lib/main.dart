@@ -4,31 +4,38 @@ import 'package:homerent/auth/bloc/login/login_bloc.dart';
 import 'package:homerent/auth/bloc/signup/signup_bloc.dart';
 import 'package:homerent/auth/data-provider/auth-data-provider.dart';
 import 'package:homerent/auth/repository/authRepository.dart';
+import 'package:homerent/rental/blocs/blocs.dart';
+import 'package:homerent/rental/blocs/image/image_bloc.dart';
+import 'package:homerent/rental/data_providers/rental-data-provider.dart';
+import 'package:homerent/rental/repository/rental-repository.dart';
 import 'package:homerent/routes.dart';
 
-import 'bloc_observer.dart';
+import 'package:homerent/bloc_observer.dart';
 
 void main() {
   Bloc.observer = SimpleBlocObserver();
+  final RentalRepository rentalRepository =
+      RentalRepository(RentalDataProvider());
   final AuthenticationDataProvider authenticationDataProvider =
       AuthenticationDataProvider();
   final AuthenticationRepository authenticationRepository =
       AuthenticationRepository(dataProvider: authenticationDataProvider);
   runApp(MyApp(
-    appRouter: AppRouter(),
     authenticationRepository: authenticationRepository,
+    rentalRepository: rentalRepository,
   ));
 }
 
 class MyApp extends StatelessWidget {
   // const MyApp({Key? key}) : super(key: key);
-  final AppRouter appRouter;
+
   final AuthenticationRepository authenticationRepository;
+  final RentalRepository rentalRepository;
 
   const MyApp({
     Key? key,
-    required this.appRouter,
     required this.authenticationRepository,
+    required this.rentalRepository,
   }) : super(key: key);
 
   @override
@@ -40,10 +47,18 @@ class MyApp extends StatelessWidget {
                 LoginBloc(authenticationRepository: authenticationRepository)),
         BlocProvider(
             create: (context) =>
-                SignUpBloc(authenticationRepository: authenticationRepository))
+                SignUpBloc(authenticationRepository: authenticationRepository)),
+        BlocProvider(
+          create: (context) =>
+              RentalBloc(rentalRepository: this.rentalRepository)
+                ..add(RentalLoadAll()),
+        ),
+        BlocProvider(
+          create: (context) => ImageBloc(),
+        ),
       ],
       child: MaterialApp(
-        onGenerateRoute: appRouter.onGeneratedRoute,
+        onGenerateRoute: AppRouter.generateRoute,
       ),
     );
   }

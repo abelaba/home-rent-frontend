@@ -7,9 +7,10 @@ import 'package:homerent/rental/blocs/image/image_bloc.dart';
 import 'package:homerent/rental/models/rental.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:homerent/rental/screen/HomeScreen.dart';
 import 'package:image_picker/image_picker.dart';
 
-import 'rental_route.dart';
+import '../../routes.dart';
 import 'rental_list.dart';
 
 class AddUpdateRental extends StatefulWidget {
@@ -73,18 +74,18 @@ class _AddUpdateRentalState extends State<AddUpdateRental> {
                 padding: const EdgeInsets.only(top: 20),
                 child: BlocBuilder<ImageBloc, ImageState>(
                   builder: (context, state) {
-                    if (state is ImageUploaded) {
+                    var image = widget.args.rental?.rentalImage;
+                    if (image != null && state is ImageInitial) {
+                      print("MY IMAGE $image");
+                      return Image.network("http://10.0.2.2:3000/${image}");
+                    } else if (state is ImageUploaded) {
                       print(this._course["rentalImage"]);
                       return Image.file(
                         File(this._course["rentalImage"].path),
                         height: 500,
                       );
                     }
-                    var image = widget.args.rental?.rentalImage;
-                    if (image != null) {
-                      print("MY IMAGE $image");
-                      return Image.network("http://10.0.2.2:3000/${image}");
-                    }
+
                     return Image.asset(
                       "./assets/images/placeholder.jpg",
                       height: 300,
@@ -120,8 +121,8 @@ class _AddUpdateRentalState extends State<AddUpdateRental> {
                               ),
                             );
                       BlocProvider.of<RentalBloc>(context).add(event);
-                      Navigator.of(context).pushNamedAndRemoveUntil(
-                          RentalList.routeName, (route) => false);
+                      BlocProvider.of<ImageBloc>(context).add(UsePlaceHolder());
+                      Navigator.of(context).pushNamed(HomeScreen.routeName);
                     }
                   },
                   label: Text('SAVE'),
@@ -133,11 +134,5 @@ class _AddUpdateRentalState extends State<AddUpdateRental> {
         ),
       ),
     );
-  }
-
-  @override
-  void initState() {
-    BlocProvider.of<ImageBloc>(context).add(UsePlaceHolder());
-    super.initState();
   }
 }
