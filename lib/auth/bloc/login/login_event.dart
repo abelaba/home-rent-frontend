@@ -32,3 +32,15 @@ class UserLogOut extends LoginEvent {
   @override
   String toString() => 'Logged Out';
 }
+
+class UserUpdated extends LoginEvent {
+  final Authentication authentication;
+
+  const UserUpdated({required this.authentication});
+
+  @override
+  List<Object> get props => [authentication];
+
+  @override
+  String toString() => 'Account updated';
+}

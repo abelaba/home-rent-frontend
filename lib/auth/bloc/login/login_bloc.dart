@@ -38,5 +38,14 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         yield LoginFailureState(Exception("LogOutfailed"));
       }
     }
+    if (event is UserUpdated) {
+      yield LoginLoading();
+      try {
+        await authenticationRepository.update(event.authentication);
+        yield UpdateAccountSuccess();
+      } catch (e) {
+        yield UpdateAccountFailure(Exception("Account update failed"));
+      }
+    }
   }
 }

@@ -35,3 +35,19 @@ class LoginFailureState extends LoginState {
   // TODO: implement props
   List<Object> get props => [];
 }
+
+class UpdateAccountSuccess extends LoginState {
+  @override
+  // TODO: implement props
+  List<Object> get props => [];
+}
+
+class UpdateAccountFailure extends LoginState {
+  final Exception exception;
+
+  UpdateAccountFailure(this.exception);
+
+  @override
+  // TODO: implement props
+  List<Object> get props => [exception];
+}
