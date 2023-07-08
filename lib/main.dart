@@ -50,8 +50,7 @@ class MyApp extends StatelessWidget {
                 SignUpBloc(authenticationRepository: authenticationRepository)),
         BlocProvider(
           create: (context) =>
-              RentalBloc(rentalRepository: this.rentalRepository)
-                ..add(RentalLoadAll()),
+              RentalBloc(rentalRepository: this.rentalRepository),
         ),
         BlocProvider(
           create: (context) => ImageBloc(),
