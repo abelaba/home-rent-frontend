@@ -29,7 +29,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         yield LoginFailureState(e);
       }
     }
-    if (event is UserLogOut) {
+    if (event is UserLoggedOut) {
       try {
         SharedPreferences prefs = await SharedPreferences.getInstance();
         await prefs.remove('auth-token');
@@ -45,6 +45,14 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         yield UpdateAccountSuccess();
       } catch (e) {
         yield UpdateAccountFailure(Exception("Account update failed"));
+      }
+    }
+    if (event is UserDeleted) {
+      try {
+        await authenticationRepository.delete();
+        yield LoggedOutState();
+      } catch (e) {
+        yield LoginFailureState(Exception("account deletion failed"));
       }
     }
   }

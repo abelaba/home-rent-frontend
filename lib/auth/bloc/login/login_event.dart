@@ -25,7 +25,7 @@ class UserLogin extends LoginEvent {
   String toString() => 'User Loggedin {user: $authentication}';
 }
 
-class UserLogOut extends LoginEvent {
+class UserLoggedOut extends LoginEvent {
   @override
   List<Object> get props => [];
 
@@ -43,4 +43,12 @@ class UserUpdated extends LoginEvent {
 
   @override
   String toString() => 'Account updated';
+}
+
+class UserDeleted extends LoginEvent {
+  @override
+  List<Object> get props => [];
+
+  @override
+  String toString() => 'Account deleted';
 }

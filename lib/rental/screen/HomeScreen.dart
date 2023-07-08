@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:homerent/rental/screen/rental_list.dart';
 import 'package:homerent/rental/screen/rental_listall.dart';
 
+import 'package:homerent/auth/screens/user_settings.dart';
+
 class HomeScreen extends StatefulWidget {
   static const routeName = "homescreen";
   HomeScreen({Key? key}) : super(key: key);
-  
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -40,9 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
           children: <Widget>[
             RentalList(),
             RentalListAll(),
-            Scaffold(
-              body: Text("Settinhs"),
-            ),
+            UserSettingsScreen(),
           ],
         ),
       ),
@@ -55,7 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
         items: <BottomNavyBarItem>[
           BottomNavyBarItem(title: Text('Post'), icon: Icon(Icons.home)),
           BottomNavyBarItem(title: Text('Home'), icon: Icon(Icons.post_add)),
-          BottomNavyBarItem(title: Text('Account'), icon: Icon(Icons.person)),
+          BottomNavyBarItem(title: Text('Account'), icon: Icon(Icons.settings)),
         ],
       ),
     );

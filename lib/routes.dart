@@ -1,10 +1,13 @@
 import 'package:homerent/auth/screens/login_view.dart';
 import 'package:homerent/auth/screens/sign_up_view.dart';
+import 'package:homerent/auth/screens/update_account.dart';
 import 'package:homerent/rental/models/rental.dart';
 import 'package:flutter/material.dart';
 import 'package:homerent/rental/screen/HomeScreen.dart';
 import 'package:homerent/rental/screen/rental_detail_noedit.dart';
 import 'package:homerent/rental/screen/rental_listall.dart';
+
+import 'package:homerent/auth/screens/user_settings.dart';
 
 import 'rental/screen/rental_add_update.dart';
 import 'rental/screen/rental_detail.dart';
@@ -22,6 +25,18 @@ class AppRouter {
 
     if (settings.name == HomeScreen.routeName) {
       return MaterialPageRoute(builder: (context) => HomeScreen());
+    }
+
+    if (settings.name == UpdateAccount.routeName) {
+      return MaterialPageRoute(
+        builder: (context) => UpdateAccount(),
+      );
+    }
+
+    if (settings.name == UserSettingsScreen.routeName) {
+      return MaterialPageRoute(
+        builder: (context) => UserSettingsScreen(),
+      );
     }
 
     if (settings.name == AddUpdateRental.routeName) {

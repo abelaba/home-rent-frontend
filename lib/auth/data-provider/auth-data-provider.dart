@@ -87,13 +87,15 @@ class AuthenticationDataProvider {
     if (token == null) {
       throw Exception("Couldn't find token");
     }
-    final response = await http.delete(Uri.parse("$_baseUrl/delete"),
+    final response = await http.delete(Uri.parse("$_baseUrl/deleteAccount"),
         headers: <String, String>{
           "Content-Type": "application/json",
           "auth-token": "$token"
         });
     if (response.statusCode != 204) {
       throw Exception("Failed to delete account");
+    } else {
+      await prefs.remove('auth-token');
     }
   }
 }
