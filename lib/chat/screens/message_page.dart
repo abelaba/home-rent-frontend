@@ -9,7 +9,7 @@ import 'package:homerent/chat/bloc/message/message_state.dart';
 import 'package:homerent/chat/bloc/message/message_event.dart';
 import 'package:homerent/chat/models/ChatModel.dart';
 import 'package:homerent/chat/models/MessageModel.dart';
-import 'package:homerent/rental/screen/HomeScreen.dart';
+import 'package:homerent/rental/screens/HomeScreen.dart';
 import 'package:homerent/routes.dart';
 
 class IndividualPage extends StatefulWidget {
@@ -45,6 +45,7 @@ class _IndividualPageState extends State<IndividualPage> {
       appBar: AppBar(
         leadingWidth: 200,
         leading: InkWell(
+          key: const ValueKey("backbutton"),
           onTap: () {
             BlocProvider.of<ChatBloc>(context).add(LoadChats());
             Navigator.of(context).pop();
@@ -60,7 +61,6 @@ class _IndividualPageState extends State<IndividualPage> {
                 child: Icon(Icons.person),
                 radius: 20,
               ),
-              Text(widget.chatArguments.user1Name),
             ],
           ),
         ),
@@ -135,6 +135,7 @@ class _IndividualPageState extends State<IndividualPage> {
                     Container(
                       margin: EdgeInsets.only(bottom: 7),
                       child: InkWell(
+                        key: const ValueKey("sendbutton"),
                         onTap: () {
                           print(_controller.text);
                           print(widget.chatArguments.chatId);

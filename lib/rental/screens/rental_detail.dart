@@ -2,7 +2,7 @@ import 'package:homerent/rental/blocs/blocs.dart';
 import 'package:homerent/rental/models/rental.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:homerent/rental/screen/HomeScreen.dart';
+import 'package:homerent/rental/screens/HomeScreen.dart';
 
 import 'rental_add_update.dart';
 import '../../routes.dart';

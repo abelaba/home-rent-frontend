@@ -4,7 +4,7 @@ import 'package:homerent/auth/bloc/login/login_bloc.dart';
 import 'package:homerent/auth/bloc/login/login_event.dart';
 import 'package:homerent/auth/bloc/login/login_state.dart';
 import 'package:homerent/auth/model/Auth.dart';
-import 'package:homerent/rental/screen/HomeScreen.dart';
+import 'package:homerent/rental/screens/HomeScreen.dart';
 
 class UpdateAccount extends StatefulWidget {
   UpdateAccount({Key? key}) : super(key: key);

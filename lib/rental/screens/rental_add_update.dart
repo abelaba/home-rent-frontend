@@ -7,7 +7,7 @@ import 'package:homerent/rental/blocs/image/image_bloc.dart';
 import 'package:homerent/rental/models/rental.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:homerent/rental/screen/HomeScreen.dart';
+import 'package:homerent/rental/screens/HomeScreen.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../routes.dart';
@@ -56,6 +56,7 @@ class _AddUpdateRentalState extends State<AddUpdateRental> {
           child: ListView(
             children: [
               TextFormField(
+                  key: const ValueKey("address"),
                   initialValue:
                       widget.args.edit ? widget.args.rental?.address : '',
                   validator: (value) {
@@ -94,6 +95,7 @@ class _AddUpdateRentalState extends State<AddUpdateRental> {
                 ),
               ),
               ElevatedButton(
+                  key: const ValueKey("addimage"),
                   onPressed: () async {
                     await _onAddPhotoClicked(context);
                     BlocProvider.of<ImageBloc>(context).add(UploadImage());

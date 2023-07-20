@@ -8,7 +8,7 @@ import 'package:homerent/auth/model/Auth.dart';
 import 'package:homerent/auth/repository/authRepository.dart';
 
 import 'package:homerent/auth/screens/sign_up_view.dart';
-import 'package:homerent/rental/screen/HomeScreen.dart';
+import 'package:homerent/rental/screens/HomeScreen.dart';
 // import 'package:email_validator/email_validator.dart';
 
 class LoginView extends StatefulWidget {
