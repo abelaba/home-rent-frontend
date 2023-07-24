@@ -6,8 +6,8 @@ import 'package:homerent/auth/model/Auth.dart';
 import 'package:http/http.dart' as http;
 
 class AuthenticationDataProvider {
-  static final String _baseUrl = "http://10.0.2.2:3000/api/user";
-  // static final String _baseUrl = "http://127.0.0.1:3000/api/user";
+  // static final String _baseUrl = "http://10.0.2.2:3000/api/user";
+  static final String _baseUrl = "http://127.0.0.1:3000/api/user";
 
   // * SIGN UP
   Future<Authentication> register(Authentication authentication) async {

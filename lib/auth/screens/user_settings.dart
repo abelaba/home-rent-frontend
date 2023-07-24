@@ -74,18 +74,21 @@ class _UserSettingsScreenState extends State<UserSettingsScreen> {
                 Icons.supervised_user_circle,
                 size: 200,
               ),
+              SizedBox(height: 10,),
               ElevatedButton(
                 onPressed: () {
                   Navigator.of(context).pushNamed(UpdateAccount.routeName);
                 },
                 child: Text("Update Account"),
               ),
+              SizedBox(height: 10,),
               ElevatedButton(
                 onPressed: () {
                   _showMyDialog();
                 },
                 child: Text("Delete Account"),
               ),
+              SizedBox(height: 10,),
               ElevatedButton(
                 onPressed: () {
                   BlocProvider.of<LoginBloc>(context).add(UserLoggedOut());

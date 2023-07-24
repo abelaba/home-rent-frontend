@@ -7,6 +7,9 @@ import 'package:homerent/auth/data-provider/auth-data-provider.dart';
 import 'package:homerent/auth/model/Auth.dart';
 import 'package:homerent/auth/repository/authRepository.dart';
 
+import 'package:homerent/rental/screens/rental_list.dart';
+import 'package:homerent/rental/screens/rental_listall.dart';
+
 import 'package:homerent/auth/screens/sign_up_view.dart';
 import 'package:homerent/rental/screens/HomeScreen.dart';
 // import 'package:email_validator/email_validator.dart';
@@ -31,6 +34,7 @@ class _LoginViewState extends State<LoginView> {
         children: [
           _loginForm(),
           _showSignUpButton(context),
+          _viewWithoutAccount(context)
         ],
       ),
     );
@@ -49,7 +53,9 @@ class _LoginViewState extends State<LoginView> {
                   if (state is LoggedInState) {
                     return Text("Logged In");
                   } else if (state is LoginFailureState) {
-                    return Text("${state.exception}");
+                    return Text("${state.exception.toString().substring(
+                          10,
+                        )}");
                   }
                   return Text("Hello");
                 },
@@ -60,7 +66,9 @@ class _LoginViewState extends State<LoginView> {
                 },
               ),
               _emailField(),
+              SizedBox(height: 10,),
               _passwordField(),
+              SizedBox(height: 10,),
               BlocBuilder<LoginBloc, LoginState>(
                 builder: (_, state) {
                   if (state is LoginLoading) {
@@ -76,6 +84,7 @@ class _LoginViewState extends State<LoginView> {
 
   Widget _emailField() {
     return TextFormField(
+      key: const ValueKey("loginemailfield"),
       decoration: InputDecoration(
         icon: Icon(Icons.person),
         hintText: 'Email',
@@ -102,6 +111,7 @@ class _LoginViewState extends State<LoginView> {
 
   Widget _passwordField() {
     return TextFormField(
+      key: const ValueKey("loginpasswordfield"),
       obscureText: true,
       decoration: InputDecoration(
         icon: Icon(Icons.security),
@@ -126,6 +136,7 @@ class _LoginViewState extends State<LoginView> {
 
   Widget _loginButton() {
     return ElevatedButton(
+      key: const ValueKey("loginbutton"),
       onPressed: () async {
         final form = _formKey.currentState;
         if (form != null && form.validate()) {
@@ -145,6 +156,7 @@ class _LoginViewState extends State<LoginView> {
   Widget _showSignUpButton(BuildContext context) {
     return SafeArea(
       child: TextButton(
+        key: const ValueKey("donthaveanaccount"),
         child: Text('Don\'t have an account? Sign up.'),
         onPressed: () {
           Navigator.of(context).popAndPushNamed(SignUpView.routeName);
@@ -153,8 +165,21 @@ class _LoginViewState extends State<LoginView> {
     );
   }
 
-  void _showSnackBar(BuildContext context, String message) {
-    final snackBar = SnackBar(content: Text(message));
-    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  Widget _viewWithoutAccount(BuildContext context) {
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.only(bottom: 40.0),
+        child: TextButton(
+            key: const ValueKey("viewwithoutaccount"),
+            child: Text('View without an account'),
+            onPressed: () {
+              print("pressed");
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => RentalListAll(loggedIn: false)));
+            }),
+      ),
+    );
   }
 }

@@ -10,8 +10,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class RentalDataProvider {
-  static final String _baseUrl = "http://10.0.2.2:3000/api/rental";
-  // static final String _baseUrl = "http://127.0.0.1:3000/api/rental";
+  // static final String _baseUrl = "http://10.0.2.2:3000/api/rental";
+  static final String _baseUrl = "http://127.0.0.1:3000/api/rental";
 
   // * Create rental property
   Future<int> create(Rental rental) async {

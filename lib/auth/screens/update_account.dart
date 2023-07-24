@@ -59,9 +59,13 @@ class _UpdateAccountState extends State<UpdateAccount> {
               }
             }),
             _nameField(),
+            SizedBox(height: 10,),
             _emailField(),
+            SizedBox(height: 10,),
             _passwordField(),
+            SizedBox(height: 10,),
             _phoneNumber(),
+            SizedBox(height: 10,),
             BlocBuilder<LoginBloc, LoginState>(
               builder: (_, state) {
                 if (state is LoginLoading) {
@@ -78,6 +82,7 @@ class _UpdateAccountState extends State<UpdateAccount> {
 
   Widget _nameField() {
     return TextFormField(
+      key: const ValueKey("namefield"),
       decoration: InputDecoration(
         icon: Icon(Icons.person),
         hintText: 'Name',
@@ -97,6 +102,7 @@ class _UpdateAccountState extends State<UpdateAccount> {
 
   Widget _emailField() {
     return TextFormField(
+      key: const ValueKey("emailfield"),
       decoration: InputDecoration(
         icon: Icon(Icons.email),
         hintText: 'Email',
@@ -114,6 +120,7 @@ class _UpdateAccountState extends State<UpdateAccount> {
 
   Widget _passwordField() {
     return TextFormField(
+      key: const ValueKey("passwordfield"),
       obscureText: true,
       decoration: InputDecoration(
         icon: Icon(Icons.security),
@@ -134,6 +141,7 @@ class _UpdateAccountState extends State<UpdateAccount> {
 
   Widget _phoneNumber() {
     return TextFormField(
+      key: const ValueKey("phonenumberfield"),
       decoration: InputDecoration(
         icon: Icon(Icons.phone),
         hintText: 'Phone Number',
