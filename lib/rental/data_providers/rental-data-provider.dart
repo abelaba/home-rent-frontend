@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:http_parser/http_parser.dart';
@@ -10,8 +11,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class RentalDataProvider {
-  // static final String _baseUrl = "http://10.0.2.2:3000/api/rental";
-  static final String _baseUrl = "http://127.0.0.1:3000/api/rental";
+  static final String _baseUrl = !kIsWeb? "http://10.0.2.2:3000/api/rental":"http://127.0.0.1:3000/api/rental";
 
   // * Create rental property
   Future<int> create(Rental rental) async {

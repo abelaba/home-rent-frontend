@@ -1,13 +1,14 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:homerent/auth/model/Auth.dart';
 import 'package:http/http.dart' as http;
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 class AuthenticationDataProvider {
-  // static final String _baseUrl = "http://10.0.2.2:3000/api/user";
-  static final String _baseUrl = "http://127.0.0.1:3000/api/user";
+  static final String _baseUrl = !kIsWeb? "http://10.0.2.2:3000/api/user":"http://127.0.0.1:3000/api/user";
 
   // * SIGN UP
   Future<Authentication> register(Authentication authentication) async {

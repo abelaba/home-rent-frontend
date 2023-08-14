@@ -53,9 +53,12 @@ class _LoginViewState extends State<LoginView> {
                   if (state is LoggedInState) {
                     return Text("Logged In");
                   } else if (state is LoginFailureState) {
-                    return Text("${state.exception.toString().substring(
+                    if(state.exception.toString().isNotEmpty){
+                      return Text("${state.exception.toString().substring(
                           10,
                         )}");
+                    }
+                    return Text("Failed");
                   }
                   return Text("Hello");
                 },
