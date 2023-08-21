@@ -3,10 +3,14 @@
 Welcome to the HomeRenting application! This Flutter-based app is designed to simplify the process of renting homes, apartments, and houses. Whether you're a tenant looking for a new place to live or a landlord seeking to list your property, this app has you covered. Read on to learn about its key features and how to get started.
 
 ## Table of Contents
+- [Demo](#demo)
 - [Features](#features)
 - [Getting Started](#getting-started)
 - [Usage](#usage)
 - [License](#license)
+
+## Demo
+https://github.com/abelaba/home-rent-frontend/assets/61546411/9e1c5451-064d-431b-a86d-9c224ea5e145
 
 ## Features
 
