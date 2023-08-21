@@ -80,10 +80,6 @@ class _MessageCardState extends State<MessageCard> {
                         color: Colors.grey[600],
                       ),
                     ),
-                    SizedBox(
-                      width: 5,
-                    ),
-                    Text(widget.senderName)
                   ],
                 ),
               ),
