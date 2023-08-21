@@ -38,7 +38,9 @@ Upon launching the HomeRenting app, you'll be greeted with an intuitive user int
 - Update your profile.
 
 In order to use the application you also need to run the backend server on your machine, which can be found on this repository.
-`https://github.com/abelaba/home-rent-backend`
+https://github.com/abelaba/home-rent-backend
+
+Make sure to also modify the baseURL in this file https://github.com/abelaba/home-rent-frontend/blob/master/lib/settings/constants.dart to the appropriate backend server address.
 
 
 
