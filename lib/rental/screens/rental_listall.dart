@@ -164,6 +164,7 @@ class _RentalListAllState extends State<RentalListAll> {
                         ),
                     SizedBox(height: 20,),
                     ListView.builder(
+                      physics: NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
                       itemCount: rentals!.length,
                       itemBuilder: (_, idx) {

@@ -55,11 +55,14 @@ class _ChatPageState extends State<ChatPage> {
               SizedBox(
                 width: 5,
               ),
-              Text(
-                chatModel.messages!.length != 0
-                    ? "${chatModel.messages![chatModel.messages!.length - 1]["message"]}"
-                    : " ",
-                style: TextStyle(fontSize: 13),
+              Flexible(
+                child: Text(
+                  chatModel.messages!.length != 0
+                      ? "${chatModel.messages![chatModel.messages!.length - 1]["message"]}"
+                      : " ",
+                  style: TextStyle(fontSize: 13),
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
             ],
           )),
