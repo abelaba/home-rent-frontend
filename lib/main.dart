@@ -16,7 +16,7 @@ import 'package:homerent/routes.dart';
 
 import 'package:homerent/bloc_observer.dart';
 
-void main() {
+void main() async {
   Bloc.observer = SimpleBlocObserver();
   final RentalRepository rentalRepository =
       RentalRepository(RentalDataProvider());
@@ -72,6 +72,7 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         onGenerateRoute: AppRouter.generateRoute,
       ),
     );

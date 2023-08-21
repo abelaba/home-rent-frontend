@@ -16,8 +16,11 @@ class RentalBloc extends Bloc<RentalEvent, RentalState> {
       yield RentalLoading();
       try {
         final courses = await rentalRepository.viewAll();
+        print("Hi");
+        print(courses);
         yield RentalOperationSuccess(courses);
       } catch (_) {
+        print(_);
         yield RentalOperationFailure();
       }
     }

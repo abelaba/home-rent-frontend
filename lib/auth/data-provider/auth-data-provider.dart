@@ -2,16 +2,18 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:homerent/settings/constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:homerent/auth/model/Auth.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/foundation.dart' show kIsWeb;
 
 class AuthenticationDataProvider {
-  static final String _baseUrl = !kIsWeb? "http://10.0.2.2:3000/api/user":"http://127.0.0.1:3000/api/user";
+  static final String _baseUrl = "${Constants.baseURL}/api/user";
 
   // * SIGN UP
   Future<Authentication> register(Authentication authentication) async {
+    
     final http.Response response =
         await http.post(Uri.parse("$_baseUrl/register"),
             headers: <String, String>{
@@ -33,6 +35,7 @@ class AuthenticationDataProvider {
 
   // * Login
   Future<String> login(Authentication authentication) async {
+    print(_baseUrl);
     final http.Response response = await http.post(Uri.parse("$_baseUrl/login"),
         headers: <String, String>{
           "Content-Type": "application/json",
@@ -48,6 +51,7 @@ class AuthenticationDataProvider {
       print(response.body);
       SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.setString('auth-token', response.body);
+      prefs.setString('email', authentication.email.toString());
       print("Logged in from data provider");
       return response.body;
     } else if (response.statusCode == 400) {

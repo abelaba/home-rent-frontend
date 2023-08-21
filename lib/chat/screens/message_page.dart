@@ -30,7 +30,9 @@ class _IndividualPageState extends State<IndividualPage> {
   void initState() {
     super.initState();
     SchedulerBinding.instance!.addPostFrameCallback((_) {
-      _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
+      if (_scrollController.hasClients) {
+        _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
+      }
     });
     BlocProvider.of<MessageBloc>(context)
         .add(LoadMessages(widget.chatArguments.chatId));
@@ -75,8 +77,10 @@ class _IndividualPageState extends State<IndividualPage> {
               child: BlocBuilder<MessageBloc, MessageState>(
                 builder: (ctx, state) {
                   SchedulerBinding.instance!.addPostFrameCallback((_) {
-                    _scrollController
-                        .jumpTo(_scrollController.position.maxScrollExtent);
+                    if (_scrollController.hasClients) {
+                      _scrollController.jumpTo(
+                          _scrollController.position.maxScrollExtent);
+                    }
                   });
                   if (state is MessageLoaded) {
                     print(state.messages.length);
@@ -100,6 +104,8 @@ class _IndividualPageState extends State<IndividualPage> {
                             time: state.messages.elementAt(index).time!,
                             senderName:
                                 state.messages.elementAt(index).senderName!,
+                            senderEmail:
+                                state.messages.elementAt(index).senderEmail!,
                           );
                         });
                   }
@@ -115,9 +121,10 @@ class _IndividualPageState extends State<IndividualPage> {
                 child: Row(
                   children: [
                     Container(
+                      padding: EdgeInsets.symmetric(horizontal: 5),
                       width: MediaQuery.of(context).size.width - 55,
                       child: Card(
-                        margin: EdgeInsets.only(left: 5, right: 2, bottom: 10),
+                        margin: EdgeInsets.only(left: 5, right: 3, bottom: 10),
                         child: TextFormField(
                           controller: _controller,
                           maxLines: 5,
@@ -155,7 +162,7 @@ class _IndividualPageState extends State<IndividualPage> {
                           radius: 25,
                           child: Icon(
                             Icons.send,
-                            color: Colors.black,
+                            color: Colors.white,
                           ),
                         ),
                       ),

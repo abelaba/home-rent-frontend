@@ -73,13 +73,14 @@ class _ChatPageState extends State<ChatPage> {
       appBar: AppBar(
         leading: Container(),
         title: Text("Chats"),
+        backgroundColor: Colors.green,
       ),
       body: BlocBuilder<ChatBloc, ChatState>(
         builder: (context, state) {
           if (state is ChatLoaded) {
             if (state.chats.length == 0) {
               return Center(
-                child: Text("You dont have any chats"),
+                child: Text("You dont have any chats", style: TextStyle(fontSize: 20),),
               );
             }
             print(state.chats.elementAt(0).sId);

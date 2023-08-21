@@ -8,6 +8,7 @@ import 'package:homerent/chat/bloc/chat/chat_event.dart';
 import 'package:homerent/chat/bloc/chat/chat_state.dart';
 import 'package:homerent/chat/bloc/chat/chat_bloc.dart';
 import 'package:homerent/rental/screens/HomeScreen.dart';
+import 'package:homerent/settings/constants.dart';
 
 import 'rental_add_update.dart';
 import '../../routes.dart';
@@ -25,49 +26,75 @@ class RentalDetailNoEdit extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('${this.rental.address}'),
+        backgroundColor: Colors.green,
+        title: Text('Rental Details'),
       ),
-      body: BlocListener<ChatBloc, ChatState>(
-        listener: (ctx, state) {
-          if (state is ChatCreated) {
-            Navigator.of(context).pushNamed(HomeScreen.routeName);
+      body: SingleChildScrollView(
+        padding: EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              height: 200,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: NetworkImage(
+                    "${Constants.baseURL}/${rental.rentalImage}",
+                  ),
+                  fit: BoxFit.cover,
+                ),
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+            ),
+            SizedBox(height: 20.0),
+            Text(
+              'Price: ${rental.price}',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 10.0),
+            Text(
+              'Address: ${rental.address}',
+              style: TextStyle(fontSize: 18, color: Colors.grey),
+            ),
+            SizedBox(height: 20.0),
+            _detailRow(Icons.home, 'Type', rental.type, Colors.blue),
+            _detailRow(Icons.bed, 'Bedrooms', rental.bedrooms.toString(), Colors.green),
+            _detailRow(Icons.bathtub, 'Bathrooms', rental.bathrooms.toString(), Colors.orange),
+            _detailRow(Icons.aspect_ratio, 'Area', '${rental.area} sq.m', Colors.purple),
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.amber,
+        onPressed: () {
+          if (loggedIn) {
+            BlocProvider.of<ChatBloc>(context).add(CreateChat(
+                chatModel: ChatModel(user2Id: this.rental.userId)));
+            Navigator.of(context).popAndPushNamed(HomeScreen.routeName);
+          } else {
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Text("You must login"),
+              duration: Duration(seconds: 2),
+            ));
           }
         },
-        child: Card(
-          child: Column(
-            children: [
-              ListTile(
-                title: Text('Title: ${this.rental.address}'),
-                subtitle: Image.network(
-                    "http://10.0.2.2:3000/${this.rental.rentalImage}"),
-              ),
-              Text(
-                'Details',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Text(this.rental.date ?? ""),
-              ElevatedButton(
-                  onPressed: () {
-                    if (loggedIn) {
-                      BlocProvider.of<ChatBloc>(context).add(CreateChat(
-                          chatModel: ChatModel(user2Id: this.rental.userId)));
-                    } else {
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        content: Text("You must login"),
-                        duration: Duration(seconds: 2),
-                      ));
-                    }
-                  },
-                  child: Text("Start chat"))
-            ],
+        child: Icon(Icons.chat),
+    ),
+    );
+  }
+
+  Widget _detailRow(IconData icon, String label, String value, Color color) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: Row(
+        children: [
+          Icon(icon, color: color),
+          SizedBox(width: 8.0),
+          Text(
+            '$label: $value',
+            style: TextStyle(fontSize: 18, color: color),
           ),
-        ),
+        ],
       ),
     );
   }

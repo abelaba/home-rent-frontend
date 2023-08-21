@@ -1,5 +1,5 @@
-import 'package:homerent/auth/screens/login_view.dart';
-import 'package:homerent/auth/screens/sign_up_view.dart';
+import 'package:homerent/auth/screens/login.dart';
+import 'package:homerent/auth/screens/register.dart';
 import 'package:homerent/auth/screens/update_account.dart';
 import 'package:homerent/chat/screens/chat_page.dart';
 import 'package:homerent/chat/screens/message_page.dart';
@@ -10,19 +10,40 @@ import 'package:homerent/rental/screens/rental_detail_noedit.dart';
 import 'package:homerent/rental/screens/rental_listall.dart';
 
 import 'package:homerent/auth/screens/user_settings.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'rental/screens/rental_add_update.dart';
 import 'rental/screens/rental_detail.dart';
 import 'rental/screens/rental_list.dart';
 
 class AppRouter {
+
+  static Future<bool> checkAuthToken() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? authToken = prefs.getString('auth-token');
+    return authToken != null && authToken.isNotEmpty;
+  }
+
   static Route? generateRoute(RouteSettings settings) {
     if (settings.name == '/') {
-      return MaterialPageRoute(builder: (context) => LoginView());
+      return MaterialPageRoute(builder: (context) {
+        return FutureBuilder<bool>(
+          future: checkAuthToken(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Scaffold(body: CircularProgressIndicator());
+            } else if (snapshot.data == true) {
+              return HomeScreen(); // Auth token exists, navigate to home
+            } else {
+              return Login(); // Auth token doesn't exist, navigate to login
+            }
+          },
+        );
+      });
     }
 
-    if (settings.name == SignUpView.routeName) {
-      return MaterialPageRoute(builder: (context) => SignUpView());
+    if (settings.name == Register.routeName) {
+      return MaterialPageRoute(builder: (context) => Register());
     }
 
     if (settings.name == HomeScreen.routeName) {

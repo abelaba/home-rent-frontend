@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:homerent/settings/constants.dart';
 import 'package:http/http.dart';
 import 'package:http_parser/http_parser.dart';
 
@@ -11,7 +12,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class RentalDataProvider {
-  static final String _baseUrl = !kIsWeb? "http://10.0.2.2:3000/api/rental":"http://127.0.0.1:3000/api/rental";
+  static final String _baseUrl = "${Constants.baseURL}/api/rental";
 
   // * Create rental property
   Future<int> create(Rental rental) async {
@@ -29,6 +30,12 @@ class RentalDataProvider {
       request.headers
           .addAll({"Content-Type": "multiport/form-data", "auth-token": token});
       request.fields["address"] = rental.address;
+      request.fields["type"] = rental.type; // Add type field
+      request.fields["bedrooms"] = rental.bedrooms.toString(); // Add bedrooms field
+      request.fields["bathrooms"] = rental.bathrooms.toString(); // Add bathrooms field
+      request.fields["area"] = rental.area.toString(); // Add area field
+      request.fields["price"] = rental.price.toString(); // Add price field
+
       var file = await MultipartFile.fromPath("rentalImage", rentalImage.path,
           filename: filename, contentType: new MediaType('image', 'jpeg'));
       request.files.add(file);
@@ -116,6 +123,11 @@ class RentalDataProvider {
       request.headers
           .addAll({"Content-Type": "multiport/form-data", "auth-token": token});
       request.fields["address"] = rental.address;
+      request.fields["type"] = rental.type; // Add type field
+      request.fields["bedrooms"] = rental.bedrooms.toString(); // Add bedrooms field
+      request.fields["bathrooms"] = rental.bathrooms.toString(); // Add bathrooms field
+      request.fields["area"] = rental.area.toString(); // Add area field
+      request.fields["price"] = rental.price.toString(); // Add price field
       // * FOR SENDING FILE
       if (rentalImage != null) {
         String filename = rentalImage.path.split('/').last;

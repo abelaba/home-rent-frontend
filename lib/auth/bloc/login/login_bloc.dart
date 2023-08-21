@@ -33,6 +33,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       try {
         SharedPreferences prefs = await SharedPreferences.getInstance();
         await prefs.remove('auth-token');
+        await prefs.remove('email');
         yield LoggedOutState();
       } catch (e) {
         yield LoginFailureState(Exception("LogOutfailed"));

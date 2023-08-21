@@ -43,8 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
           children: <Widget>[
             RentalList(),
             RentalListAll(),
-            ChatPage(),
-            UserSettingsScreen()
+            ChatPage()
           ],
         ),
       ),
@@ -56,20 +55,26 @@ class _HomeScreenState extends State<HomeScreen> {
         },
         items: <BottomNavyBarItem>[
           BottomNavyBarItem(
-              title: Text('Post'),
+            activeColor: Colors.green,
+            inactiveColor: Colors.black,
+              title: Text('My properties'),
               icon: Icon(
                 Icons.home,
                 key: const ValueKey("Post"),
               )),
           BottomNavyBarItem(
+            activeColor: Colors.green,
+            inactiveColor: Colors.black,
               title: Text(
-                'Home',
+                'All',
               ),
               icon: Icon(
-                Icons.post_add,
+                Icons.other_houses,
                 key: const ValueKey("Home"),
               )),
           BottomNavyBarItem(
+            activeColor: Colors.green,
+            inactiveColor: Colors.black,
               title: Text(
                 'Chats',
               ),
@@ -77,12 +82,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 Icons.chat,
                 key: const ValueKey("Chats"),
               )),
-          BottomNavyBarItem(
-              title: Text('Account'),
-              icon: Icon(
-                Icons.settings,
-                key: const ValueKey("Account"),
-              ))
         ],
       ),
     );

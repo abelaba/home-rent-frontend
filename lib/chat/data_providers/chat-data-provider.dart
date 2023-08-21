@@ -4,12 +4,13 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:homerent/chat/models/ChatModel.dart';
 import 'package:homerent/chat/models/MessageModel.dart';
+import 'package:homerent/settings/constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:homerent/auth/model/Auth.dart';
 import 'package:http/http.dart' as http;
 
 class ChatDataProvider {
-  static final String _baseUrl = !kIsWeb? "http://10.0.2.2:3000/api/chat":"http://127.0.0.1:3000/api/chat";
+  static final String _baseUrl = "${Constants.baseURL}/api/chat";
 
   // * Create chat
   Future<ChatModel> create(ChatModel chatModel) async {
