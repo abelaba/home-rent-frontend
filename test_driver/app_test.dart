@@ -55,7 +55,7 @@ void main() {
 
       await driver.tap(loginbutton);
 
-      await driver.waitFor(find.text("Sign in"));
+      await driver.waitFor(find.text("Sign In"));
 
       await driver.tap(signup);
 

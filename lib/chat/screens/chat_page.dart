@@ -70,6 +70,7 @@ class _ChatPageState extends State<ChatPage> {
   Widget build(BuildContext context) {
     BlocProvider.of<ChatBloc>(context).add(LoadChats());
     return Scaffold(
+      backgroundColor: Colors.green[50],
       appBar: AppBar(
         leading: Container(),
         title: Text("Chats"),

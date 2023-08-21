@@ -105,6 +105,7 @@ class _AddUpdateRentalState extends State<AddUpdateRental> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.green[100],
       key: _scaffoldKey,
       appBar: AppBar(
         backgroundColor: Colors.green,

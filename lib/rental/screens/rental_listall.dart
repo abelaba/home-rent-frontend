@@ -1,3 +1,4 @@
+import 'package:homerent/auth/screens/user_settings.dart';
 import 'package:homerent/rental/blocs/blocs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -37,35 +38,39 @@ class _RentalListAllState extends State<RentalListAll> {
   int? area;
   int? price;
 
-  Widget _card({required Rental rental}){
-    return GestureDetector(
-      onTap: () {
-              if (widget.loggedIn) {
-                Navigator.of(context).pushNamed(
-                  RentalDetailNoEdit.routeName,
-                  arguments: rental,
-                );
-              } else {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => RentalDetailNoEdit(
-                      rental: rental,
-                      loggedIn: false,
-                    ),
-                  ),
-                );
-              }
-      },
-          //   },
-      child: Card(
+  Widget _card({required Rental rental}) {
+  return GestureDetector(
+    onTap: () {
+      if (widget.loggedIn) {
+        Navigator.of(context).pushNamed(
+          RentalDetailNoEdit.routeName,
+          arguments: rental,
+        );
+      } else {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => RentalDetailNoEdit(
+              rental: rental,
+              loggedIn: false,
+            ),
+          ),
+        );
+      }
+    },
+    child: Card(
       key: ValueKey("singlerental"),
+      elevation: 3,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
             height: 150, // Fixed image height
             decoration: BoxDecoration(
+              borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
               image: DecorationImage(
                 image: NetworkImage(
                   "${Constants.baseURL}/${rental.rentalImage}",
@@ -88,8 +93,7 @@ class _RentalListAllState extends State<RentalListAll> {
                 ),
                 SizedBox(height: 4),
                 Text(
-                  // Assuming price is stored as a string in your course model
-                  "Price: ${rental.price}",
+                  "Price: \$${rental.price}", // Format price with a dollar sign
                   style: TextStyle(
                     fontSize: 16,
                     color: Colors.grey,
@@ -98,27 +102,28 @@ class _RentalListAllState extends State<RentalListAll> {
               ],
             ),
           ),
-          
         ],
       ),
-      ),
-    );
+    ),
+  );
+}
 
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.green[50],
+      drawer: widget.loggedIn? Drawer(child: UserSettingsScreen()): null,
       appBar: AppBar(
         backgroundColor: Colors.green,
         leading: widget.loggedIn
-            ? Container()
+            ? null
             : IconButton(
                 icon: Icon(Icons.arrow_back),
                 onPressed: () {
                   Navigator.of(context).pop();
                 }),
-        title: Text('All properties'),
+        title: Text('All Properties'),
       ),
       body: BlocBuilder<RentalBloc, RentalState>(
         builder: (_, state) {

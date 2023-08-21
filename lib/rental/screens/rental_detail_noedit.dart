@@ -25,9 +25,10 @@ class RentalDetailNoEdit extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.green[50],
       appBar: AppBar(
         backgroundColor: Colors.green,
-        title: Text('Rental Details'),
+        title: Text('Details'),
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
@@ -37,18 +38,26 @@ class RentalDetailNoEdit extends StatelessWidget {
             Container(
               height: 200,
               decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10.0),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 5,
+                    blurRadius: 7,
+                    offset: Offset(0, 3), // changes the position of the shadow
+                  ),
+                ],
                 image: DecorationImage(
                   image: NetworkImage(
                     "${Constants.baseURL}/${rental.rentalImage}",
                   ),
                   fit: BoxFit.cover,
                 ),
-                borderRadius: BorderRadius.circular(10.0),
               ),
             ),
             SizedBox(height: 20.0),
             Text(
-              'Price: ${rental.price}',
+              'Price: \$${rental.price}',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 10.0),
@@ -73,13 +82,13 @@ class RentalDetailNoEdit extends StatelessWidget {
             Navigator.of(context).popAndPushNamed(HomeScreen.routeName);
           } else {
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              content: Text("You must login"),
+              content: Text("You must log in"),
               duration: Duration(seconds: 2),
             ));
           }
         },
         child: Icon(Icons.chat),
-    ),
+      ),
     );
   }
 

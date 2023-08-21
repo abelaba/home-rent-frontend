@@ -21,9 +21,11 @@ class _UpdateAccountState extends State<UpdateAccount> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.green[50],
       appBar: AppBar(
         title: Text("Update Account"),
         centerTitle: true,
+        backgroundColor: Colors.green,
       ),
       body: Stack(
         alignment: Alignment.bottomCenter,
@@ -220,7 +222,7 @@ Widget _passwordField() {
         }
       },
       style: ElevatedButton.styleFrom(
-        primary: Colors.blue, // Button background color
+        primary: Colors.green, // Button background color
         padding: EdgeInsets.symmetric(vertical: 16), // Button padding
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10), // Button border radius

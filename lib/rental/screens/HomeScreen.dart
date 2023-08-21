@@ -34,6 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
       body: Center(
         child: PageView(
           controller: _pageController,
@@ -41,13 +42,14 @@ class _HomeScreenState extends State<HomeScreen> {
             setState(() => _currentIndex = index);
           },
           children: <Widget>[
-            RentalList(),
             RentalListAll(),
+            RentalList(),
             ChatPage()
           ],
         ),
       ),
       bottomNavigationBar: BottomNavyBar(
+        backgroundColor: Colors.green[100],
         selectedIndex: _currentIndex,
         onItemSelected: (index) {
           setState(() => _currentIndex = index);
@@ -57,20 +59,20 @@ class _HomeScreenState extends State<HomeScreen> {
           BottomNavyBarItem(
             activeColor: Colors.green,
             inactiveColor: Colors.black,
-              title: Text('My properties'),
-              icon: Icon(
-                Icons.home,
-                key: const ValueKey("Post"),
-              )),
-          BottomNavyBarItem(
-            activeColor: Colors.green,
-            inactiveColor: Colors.black,
               title: Text(
-                'All',
+                'Home',
               ),
               icon: Icon(
                 Icons.other_houses,
                 key: const ValueKey("Home"),
+              )),
+          BottomNavyBarItem(
+            activeColor: Colors.green,
+            inactiveColor: Colors.black,
+              title: Text('My Prop'),
+              icon: Icon(
+                Icons.home,
+                key: const ValueKey("Post"),
               )),
           BottomNavyBarItem(
             activeColor: Colors.green,

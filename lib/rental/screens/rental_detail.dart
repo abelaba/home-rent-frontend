@@ -23,9 +23,10 @@ class _RentalDetailState extends State<RentalDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.green[50],
       appBar: AppBar(
         backgroundColor: Colors.green,
-        title: Text('Rental Details'),
+        title: Text('Details'),
         actions: [
           IconButton(
             icon: Icon(Icons.edit),

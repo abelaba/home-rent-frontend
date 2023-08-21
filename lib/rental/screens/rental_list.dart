@@ -40,12 +40,17 @@ class _RentalListState extends State<RentalList> {
       },
       child: Card(
       key: ValueKey("singlerental"),
+      elevation: 3,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
             height: 150, // Fixed image height
             decoration: BoxDecoration(
+              borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
               image: DecorationImage(
                 image: NetworkImage(
                   "${Constants.baseURL}/${rental.rentalImage}",
@@ -68,8 +73,7 @@ class _RentalListState extends State<RentalList> {
                 ),
                 SizedBox(height: 4),
                 Text(
-                  // Assuming price is stored as a string in your course model
-                  "Price: ${rental.price}",
+                  "Price: \$${rental.price}", // Format price with a dollar sign
                   style: TextStyle(
                     fontSize: 16,
                     color: Colors.grey,
@@ -78,10 +82,9 @@ class _RentalListState extends State<RentalList> {
               ],
             ),
           ),
-          
         ],
       ),
-      ),
+    ),
     );
 
   }
@@ -89,10 +92,11 @@ class _RentalListState extends State<RentalList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(child: UserSettingsScreen()),
+      backgroundColor: Colors.green[50],
       appBar: AppBar(
+        leading: Container(),
         backgroundColor: Colors.green,
-        title: Text('My properties'),
+        title: Text('My Properties'),
       ),
       body: BlocBuilder<RentalBloc, RentalState>(
         builder: (_, state) {

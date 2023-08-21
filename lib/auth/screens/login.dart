@@ -48,11 +48,7 @@ class _LoginState extends State<Login> {
                 padding: EdgeInsets.only(left: 35, top: 130),
                 child: BlocConsumer<LoginBloc, LoginState>(
                   builder: (context, state) {
-                    
-                    return Padding(
-                      padding: const EdgeInsets.only(top: 100.0),
-                      child: Text("Welcome\nback", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 33),),
-                    );
+                    return Text("Welcome\nback", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 33),);
                   },
                   listener: (_, state) {
                     if(state is LoginFailureState){
@@ -150,7 +146,7 @@ class _LoginState extends State<Login> {
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    'Sign in',
+                                    'Sign In',
                                     style: TextStyle(
                                         fontSize: 27, fontWeight: FontWeight.w700),
                                   ),
