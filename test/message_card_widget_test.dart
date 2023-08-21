@@ -25,6 +25,7 @@ void main() {
           home: Scaffold(
         body: Center(
           child: MessageCard(
+              senderEmail: "aaa@gmail.com",
               message: "message",
               time: "timjkhkjhkhkjhkhkjkhke",
               senderName: "senderName"),

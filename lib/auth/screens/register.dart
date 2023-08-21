@@ -226,7 +226,6 @@ class _RegisterState extends State<Register> {
                                 children: [
                                   Text(
                                     'Sign Up',
-                                    key: const ValueKey("signupbutton"),
                                     style: TextStyle(
                                         color: Colors.black,
                                         fontSize: 27,
@@ -236,6 +235,7 @@ class _RegisterState extends State<Register> {
                                     radius: 30,
                                     backgroundColor: Color(0xff4c505b),
                                     child: IconButton(
+                                        key: const ValueKey("signupbutton"),
                                         color: Colors.black,
                                         onPressed: _signUp,
                                         icon: Icon(

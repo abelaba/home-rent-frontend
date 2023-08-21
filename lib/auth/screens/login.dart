@@ -117,6 +117,7 @@ class _LoginState extends State<Login> {
                                 height: 30,
                               ),
                               TextFormField(
+                                key: const ValueKey("loginpasswordfield"),
                                 style: TextStyle(),
                                 obscureText: true,
                                 validator: (value) {
@@ -150,7 +151,6 @@ class _LoginState extends State<Login> {
                                 children: [
                                   Text(
                                     'Sign in',
-                                    key: const ValueKey("loginbutton"),
                                     style: TextStyle(
                                         fontSize: 27, fontWeight: FontWeight.w700),
                                   ),
@@ -158,6 +158,7 @@ class _LoginState extends State<Login> {
                                     radius: 30,
                                     backgroundColor: Color(0xff4c505b),
                                     child: IconButton(
+                                        key: const ValueKey("loginbutton"),
                                         color: Colors.white,
                                         onPressed: login,
                                         icon: Icon(
@@ -173,6 +174,7 @@ class _LoginState extends State<Login> {
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   TextButton(
+                                    key: const ValueKey("signup"),
                                     onPressed: () {
                                       Navigator.of(context).popAndPushNamed(Register.routeName);
                                     },

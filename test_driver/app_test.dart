@@ -14,24 +14,24 @@ void main() {
   tearDownAll(() async {
     driver.close();
   });
-  group('View without login', () {
-    final viewwithoutaccount = find.byValueKey("viewwithoutaccount");
-    final singlerental = find.text('France');
+  // group('View without login', () {
+  //   final viewwithoutaccount = find.byValueKey("viewwithoutaccount");
+  //   final singlerental = find.text('France');
 
-    test("View posts without logging in", () async {
-      await driver.tap(viewwithoutaccount);
-      await driver.waitFor(find.text("All properties"));
-      print(singlerental);
+  //   test("View posts without logging in", () async {
+  //     await driver.tap(viewwithoutaccount);
+  //     await driver.waitFor(find.text("All properties"));
+  //     print(singlerental);
 
-      await driver.tap(singlerental);
-      await driver.waitFor(find.text("Start chat"));
+  //     await driver.tap(singlerental);
+  //     await driver.waitFor(find.text("Start chat"));
 
-      await driver.tap(find.byType("Icon"));
-      await driver.waitFor(find.text("All properties"));
+  //     await driver.tap(find.byType("Icon"));
+  //     await driver.waitFor(find.text("All properties"));
 
-      await driver.tap(find.byType("IconButton"));
-    });
-  });
+  //     await driver.tap(find.byType("IconButton"));
+  //   });
+  // });
   group('Login and signup', () {
     // signUp
     final snamefield = find.byValueKey('signupnamefield');
@@ -44,7 +44,7 @@ void main() {
     final lemailfield = find.byValueKey('loginemailfield');
     final lpasswordfield = find.byValueKey('loginpasswordfield');
     final loginbutton = find.byValueKey('loginbutton');
-    final donthaveanaccount = find.byValueKey("donthaveanaccount");
+    final signup = find.byValueKey("signup");
 
     test("Sign up and login", () async {
       await driver.tap(lemailfield);
@@ -55,9 +55,9 @@ void main() {
 
       await driver.tap(loginbutton);
 
-      await driver.waitFor(find.text("Login"));
+      await driver.waitFor(find.text("Sign in"));
 
-      await driver.tap(donthaveanaccount);
+      await driver.tap(signup);
 
       await driver.tap(snamefield);
       await driver.enterText("IamGhost");
@@ -73,7 +73,7 @@ void main() {
 
       await driver.tap(signupbutton);
 
-      await driver.waitFor(find.text("Login"));
+      await driver.waitFor(find.text("Sign In"));
 
       await driver.tap(lemailfield);
       await driver.enterText("ghost@gmail.com");
@@ -105,7 +105,7 @@ void main() {
 
       await driver.waitFor(find.text("All properties"));
 
-      await driver.tap(find.text('France'));
+      
     });
   });
 

@@ -5,8 +5,7 @@ import 'package:homerent/auth/bloc/login/login_bloc.dart';
 import 'package:homerent/auth/bloc/signup/signup_bloc.dart';
 import 'package:homerent/auth/data-provider/auth-data-provider.dart';
 import 'package:homerent/auth/repository/authRepository.dart';
-import 'package:homerent/auth/screens/login_view.dart';
-import 'package:homerent/auth/screens/sign_up_view.dart';
+import 'package:homerent/auth/screens/register.dart';
 import 'package:homerent/chat/data_providers/chat-data-provider.dart';
 import 'package:homerent/chat/repository/chat-repository.dart';
 import 'package:homerent/main.dart';
@@ -20,7 +19,7 @@ void main() {
         create: (context) => SignUpBloc(
             authenticationRepository: AuthenticationRepository(
                 dataProvider: AuthenticationDataProvider())),
-        child: SignUpView(),
+        child: Register(),
       ),
     ));
 

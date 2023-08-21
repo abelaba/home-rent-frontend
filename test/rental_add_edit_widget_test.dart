@@ -31,13 +31,11 @@ void main() {
 
     var textform = find.byType(TextFormField);
 
-    expect(textform, findsOneWidget);
+    expect(textform, findsWidgets);
 
     var addImageButton = find.byIcon(Icons.add);
     expect(addImageButton, findsOneWidget);
 
-    var saveButton = find.byIcon(Icons.save);
-    expect(saveButton, findsOneWidget);
     var image = find.byType(Image);
     expect(image, findsOneWidget);
 

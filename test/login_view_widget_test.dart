@@ -4,7 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:homerent/auth/bloc/login/login_bloc.dart';
 import 'package:homerent/auth/data-provider/auth-data-provider.dart';
 import 'package:homerent/auth/repository/authRepository.dart';
-import 'package:homerent/auth/screens/login_view.dart';
+import 'package:homerent/auth/screens/login.dart';
 import 'package:homerent/chat/data_providers/chat-data-provider.dart';
 import 'package:homerent/chat/repository/chat-repository.dart';
 import 'package:homerent/main.dart';
@@ -18,7 +18,7 @@ void main() {
         create: (context) => LoginBloc(
             authenticationRepository: AuthenticationRepository(
                 dataProvider: AuthenticationDataProvider())),
-        child: LoginView(),
+        child: Login(),
       ),
     ));
 
